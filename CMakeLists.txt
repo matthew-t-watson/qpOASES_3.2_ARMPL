@@ -106,7 +106,7 @@ FILE(GLOB SRC src/*.cpp)
 
 # library
 ADD_LIBRARY(qpOASES STATIC ${SRC})
-target_link_libraries(qpOASES armpl)
+target_link_libraries(qpOASES :libarmpl.so)
 INSTALL(TARGETS qpOASES
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
@@ -149,7 +149,7 @@ if (QPOASES_BUILD_EXAMPLES)
 
     FOREACH(ELEMENT ${EXAMPLE_NAMES})
         ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
-        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES armpl)
+        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES :libarmpl.so)
     ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
 endif(QPOASES_BUILD_EXAMPLES)
 
