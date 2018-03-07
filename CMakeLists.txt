@@ -106,7 +106,7 @@ FILE(GLOB SRC src/*.cpp)
 
 # library
 ADD_LIBRARY(qpOASES STATIC ${SRC})
-target_link_libraries(qpOASES :libarmpl.so)
+target_link_libraries(qpOASES /opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib/libarmpl.so)
 INSTALL(TARGETS qpOASES
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
@@ -149,7 +149,7 @@ if (QPOASES_BUILD_EXAMPLES)
 
     FOREACH(ELEMENT ${EXAMPLE_NAMES})
         ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
-        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES :libarmpl.so)
+        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES /opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib/libarmpl.so)
     ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
 endif(QPOASES_BUILD_EXAMPLES)
 
