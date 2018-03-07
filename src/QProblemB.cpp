@@ -34,7 +34,8 @@
 
 
 #include <qpOASES/QProblemB.hpp>
-#include <qpOASES/LapackBlasReplacement.hpp>
+//#include <qpOASES/LapackBlasReplacement.hpp>
+#include <armpl.h>
 
 
 BEGIN_NAMESPACE_QPOASES

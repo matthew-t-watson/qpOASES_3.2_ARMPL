@@ -33,7 +33,8 @@
 
 
 #include <qpOASES/Matrices.hpp>
-#include <qpOASES/LapackBlasReplacement.hpp>
+//#include <qpOASES/LapackBlasReplacement.hpp>
+#include <armpl.h>
 
 
 BEGIN_NAMESPACE_QPOASES
