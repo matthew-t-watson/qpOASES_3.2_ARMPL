@@ -106,7 +106,7 @@ FILE(GLOB SRC src/*.cpp)
 
 # library
 ADD_LIBRARY(qpOASES STATIC ${SRC})
-target_link_libraries(qpOASES ${ARMPL_TIME_LIMITED_LIBRARIES}/libarmpl.so) # Messy fix for unable to find library error
+target_link_libraries(qpOASES -L${ARMPL_TIME_LIMITED_LIBRARIES} armpl) # Messy fix for unable to find library error
 INSTALL(TARGETS qpOASES
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
@@ -149,7 +149,7 @@ if (QPOASES_BUILD_EXAMPLES)
 
     FOREACH(ELEMENT ${EXAMPLE_NAMES})
         ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
-        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES ${ARMPL_TIME_LIMITED_LIBRARIES}/libarmpl.so)
+        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES -L${ARMPL_TIME_LIMITED_LIBRARIES} armpl)
     ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
 endif(QPOASES_BUILD_EXAMPLES)
 
