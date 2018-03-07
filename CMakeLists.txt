@@ -75,23 +75,23 @@ SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D__DEBUG__")
 ######################## rpath #############################
 ############################################################
 # use, i.e. don't skip the full RPATH for the build tree
-#set(CMAKE_SKIP_BUILD_RPATH  FALSE)
+set(CMAKE_SKIP_BUILD_RPATH  FALSE)
 
 # when building, don't use the install RPATH already
 # (but later on when installing)
-#set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
-#set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib:${CMAKE_INSTALL_PREFIX}/lib/casadi")
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib:${CMAKE_INSTALL_PREFIX}/lib/casadi")
 
 # add the automatically determined parts of the RPATH
 # which point to directories outside the build tree to the install RPATH
-#set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # the RPATH to be used when installing, but only if it's not a system directory
-#list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
-#if("${isSystemDir}" STREQUAL "-1")
-#   set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib:${CMAKE_INSTALL_PREFIX}/lib/casadi")
-#endif("${isSystemDir}" STREQUAL "-1")
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+   set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib:${CMAKE_INSTALL_PREFIX}/lib/casadi")
+endif("${isSystemDir}" STREQUAL "-1")
 
 
 
@@ -106,7 +106,7 @@ FILE(GLOB SRC src/*.cpp)
 
 # library
 ADD_LIBRARY(qpOASES STATIC ${SRC})
-target_link_libraries(qpOASES armpl)
+target_link_libraries(qpOASES ${ARMPL_TIME_LIMITED_LIBRARIES}/libarmpl.so) # Messy fix for unable to find library error
 INSTALL(TARGETS qpOASES
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
@@ -149,7 +149,7 @@ if (QPOASES_BUILD_EXAMPLES)
 
     FOREACH(ELEMENT ${EXAMPLE_NAMES})
         ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
-        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES armpl)
+        TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES ${ARMPL_TIME_LIMITED_LIBRARIES}/libarmpl.so)
     ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
 endif(QPOASES_BUILD_EXAMPLES)
 
