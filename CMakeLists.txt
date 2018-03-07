@@ -99,6 +99,7 @@ endif("${isSystemDir}" STREQUAL "-1")
 #################### build and install #####################
 ############################################################
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
+LINK_DIRECTORIES(ARMPL_TIME_LIMITED_LIBRARIES)
 
 # compile qpOASES libraries
 FILE(GLOB SRC src/*.cpp)
