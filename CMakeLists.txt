@@ -114,7 +114,7 @@ FILE(GLOB SRC src/*.cpp)
 
 # library
 ADD_LIBRARY(qpOASES STATIC ${SRC})
-target_link_libraries(qpOASES -L/opt/arm/arm-hpc-compiler-18.1_Generic-AArch64_Ubuntu-16.04_aarch64-linux/lib -L/usr/local/lib -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib flang armpl fakemetis hsl_ma57 fakemetis armpl) # Messy fix for unable to find library error
+target_link_libraries(qpOASES -L/opt/arm/arm-hpc-compiler-18.1_Generic-AArch64_Ubuntu-16.04_aarch64-linux/lib -L/usr/local/lib -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib flang armpl m fakemetis hsl_ma57 fakemetis armpl) # Messy fix for unable to find library error
 INSTALL(TARGETS qpOASES
   LIBRARY DESTINATION lib 
   ARCHIVE DESTINATION lib
@@ -157,7 +157,7 @@ if (QPOASES_BUILD_EXAMPLES)
 
     FOREACH(ELEMENT ${EXAMPLE_NAMES})
         ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
-        TARGET_LINK_LIBRARIES(${ELEMENT}  -L/opt/arm/arm-hpc-compiler-18.1_Generic-AArch64_Ubuntu-16.04_aarch64-linux/lib -L/usr/local/lib -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib flang armpl fakemetis qpOASES hsl_ma57 fakemetis armpl)
+        TARGET_LINK_LIBRARIES(${ELEMENT}  -L/opt/arm/arm-hpc-compiler-18.1_Generic-AArch64_Ubuntu-16.04_aarch64-linux/lib -L/usr/local/lib -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib flang armpl fakemetis m qpOASES hsl_ma57 fakemetis armpl)
     ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
 endif(QPOASES_BUILD_EXAMPLES)
 
